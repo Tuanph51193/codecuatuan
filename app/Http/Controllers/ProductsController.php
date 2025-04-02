@@ -32,7 +32,7 @@ class ProductsController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
         $products=$query->orderBy('id','desc')->paginate(5);
-        return view('products.index', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
 
 
@@ -42,7 +42,7 @@ class ProductsController extends Controller
     public function create()
     {
         $categories = Category::query()->where('status',1)->get();// lấy danh sách danh mục
-        return view('products.create', compact('categories'));
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -100,7 +100,7 @@ class ProductsController extends Controller
         $product = Product::query()->where('id', $id)->first();
 
 
-        return view('products.show', compact('product'));
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -114,7 +114,7 @@ class ProductsController extends Controller
         // //trả dữ liệu cần chỉnh sửa về view
         // return view('products.edit', compact('product', 'categories'));
         $categories =Category::query()->where('status',1)->get();
-        return view('products.edit', compact('product', 'categories'));
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**

@@ -11,8 +11,8 @@
 <body>
     <div class="container mt -4">
         <div class="d-flex justify-content-between mb-3">
-            <a href="{{route('categories.index')}}" class="btn btn-ìno">Quản lý danh mục</a>
-            <a href="{{route('products.index')}}" class="btn btn-ìno">Quản lý sản phẩm</a>
+            <a href="{{route('categories.index')}}" class="btn btn-info">Quản lý danh mục</a>
+            <a href="{{route('products.index')}}" class="btn btn-info">Quản lý sản phẩm</a>
         </div>
         @yield('content')
     </div>
