@@ -7,15 +7,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // trang chủ
-Route::get('/', function () {
-    return view('client.home');
-});
+// Route::get('/', function () {
+//     return view('client.home');
+// });
+Route::get('/', [ProductsController::class, 'homes'])->name('homes');
 
 // form login
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
-
+//from đăng ký
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+// xử lý đăng ký
+Route::post('/register', [AuthController::class, 'register']); // Sử dụng cú pháp đúng cho controller và phương thức
 // đẩy form login
 Route::post('/login', [AuthController::class, 'login']);  // Sử dụng cú pháp đúng cho controller và phương thức
 // logout

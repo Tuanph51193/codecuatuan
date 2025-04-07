@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -32,4 +34,26 @@ class AuthController extends Controller
 
        
     }
+    public function register(Request $request){
+        //xác thực dữ liệu vào
+        $credentials=$request->validate([
+            'email'=>'required|email',
+            'password'=>'required|min:6',
+            'name'=>'required',
+            
+            
+        ]);
+        $credentials['role']='user';
+    
+    $user= User::create([
+        'name'=>$request->name,
+        'email'=>$request->email,
+        'password'=>Hash::make($request->password),
+        'role'=>$credentials['role'],
+    ]);
+    // Đăng nhập người dùng sau khi đăng ký
+    Auth::login($user);
+    // Chuyển hướng đến trang người dùng hoặc admin
+    return redirect('/login')->with('success', 'Đăng ký thành công');
+}
 }

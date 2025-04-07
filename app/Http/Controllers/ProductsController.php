@@ -34,8 +34,14 @@ class ProductsController extends Controller
         $products=$query->orderBy('id','desc')->paginate(5);
         return view('admin.products.index', compact('products'));
     }
-
-
+ 
+    public function homes(Request $request)
+    {
+        $query = Product::with('category'); // Quan hệ 1-1, tự động lấy dữ liệu danh mục
+       
+        $products = $query->orderBy('id', 'desc')->paginate(5);
+        return view('client.home', compact('products'));
+    }
     /**
      * Show the form for creating a new resource.
      */
